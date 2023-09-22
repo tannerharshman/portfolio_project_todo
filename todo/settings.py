@@ -76,10 +76,15 @@ WSGI_APPLICATION = 'todo.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'nc_tasks_db',
+        'USER': 'postgres',
+        'PASSWORD': 'admin123',
+        'HOST': 'pg',  # Change to your PostgreSQL server's host if not localhost
+        'PORT': '5432',       # Change to your PostgreSQL server's port if necessary
     }
 }
+
 
 
 # Password validation

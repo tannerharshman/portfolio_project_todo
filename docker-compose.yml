@@ -35,3 +35,14 @@ services:
     volumes:
       - ./data:/data
       - ./data/misc/final_project.sql:/docker-entrypoint-initdb.d/1-django-init.sql
+
+# pgAdmin service
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    environment:
+      PGADMIN_DEFAULT_EMAIL: your_email@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+    ports:
+      - "8080:80"
+    depends_on:
+      - pg  # Ensure pgAdmin starts after PostgreSQL

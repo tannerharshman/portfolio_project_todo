@@ -1,7 +1,8 @@
 version: '3'
 services:
   web:
-    build:
+    build: ./app
+    image: 687648284088.dkr.ecr.us-east-1.amazonaws.com/todo:todo_web
       context: tasks/
       dockerfile: Dockerfile
     ports:
@@ -20,6 +21,16 @@ services:
       - DATABASE=postgres
     depends_on:
       - pg
+  
+   nginx:
+    build: ./nginx
+    image: 687648284088.dkr.ecr.us-east-1.amazonaws.com/todo:todo_nginx
+    volumes:
+      - static_volume:/usr/src/app/static
+    ports:
+      - 8000:80
+    depends_on:
+      - web
 
   pg:
     container_name: pg_container
